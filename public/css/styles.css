@@ -1,0 +1,121 @@
+html,
+body {
+  margin: 0;
+  background-color: hsl(0, 0%, 98%);
+  font-family: "Nunito", sans-serif;
+}
+
+
+/* HEADER */
+
+.header-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  background-color: hsl(0, 0%, 100%);
+}
+
+/* INPUT CONFIG */
+
+.table-content{
+  width: 100%;
+  height: 100%;
+
+  
+}
+
+.icon-td{
+  width: 40px;
+  text-align: center;
+  vertical-align: middle;
+  padding-left: 10px;
+ 
+}
+
+
+.search-logo{
+  margin-top: 8px;
+  width: 20px;
+  height: 20px;
+  fill: gray;
+
+
+}
+
+.input-box{
+  margin: auto;
+  margin-top: 20px;
+  width: 80%;
+  height: 42px;
+
+  
+
+  border: 1px solid none;
+  border-radius: 5px;
+  background: hsl(0, 0%, 100%);
+  box-shadow: 0 0 5px 0.5px hsl(0, 0%, 90%);
+
+
+  /*background-color: hsl(0, 0%, 100%;*/
+}
+
+
+
+.input-country{
+  font-size: 18px;
+
+  border: none;
+  height: 80%;
+  width: 100%;
+}
+
+.input-country:focus{
+  outline: none;
+}
+
+
+
+/* CARD COUNTRY */
+
+.card-model{
+  width: 80%;
+  margin: 50px auto auto auto;
+
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-wrap:wrap;
+
+
+}
+
+
+.cards-container{
+  width: 200px;
+  height: auto;
+  
+
+  display: flex;
+  justify-content: center;
+ 
+  
+
+
+ 
+}
+
+.card-country{
+  width: 280px;
+  height: 320px;
+
+
+  border-radius: 10px;
+  margin-bottom: 50px;
+
+  /*margin-right: 50px;*/
+
+
+  background-color: red;
+  
+}
