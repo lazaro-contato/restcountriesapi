@@ -8,7 +8,7 @@
   "name": "restcountriesapi",
   "description": "![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.js",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
