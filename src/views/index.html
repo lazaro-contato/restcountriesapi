@@ -7,15 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./public/css/styles.css"> 
+  <link rel="stylesheet" type="text/css" href="../../public/css/styles.css"> 
   <title>Countries Search</title>
 </head>
 
 <body>
     <header class="header-container">
-      <h3>Where in the world</h3>
-      <img src="" alt="">
-      <h4>Dark Mode</h4>
+      <div class="separator-header">
+        <h3>Where in the world</h3>
+        <img src="" alt="">
+        <h4>Dark Mode</h4>
+      </div>
+      
     </header>
 
     <div class="input-box">
@@ -69,8 +72,25 @@
             </td>
           </tr>
         </table>
-      
-      
+    </div>
+    <div class="wrapper">
+      <div class="list-box">
+        <div class="dropdown">
+          <div class="drop-data">
+            <div class="default-option">Filter by region </div>
+            <img src="../../public/images/down-filled-triangular-arrow.png" alt="arrow" class="arrow-image">
+          </div>
+          
+          <ul>
+            <li>All</li>
+            <li>Africa</li>
+            <li>America</li>
+            <li>Asia</li>
+            <li>Europe</li>
+            <li>Oceania</li>
+          </ul>
+        </div>
+      </div>
     </div>
     
     <div class="card-model">
@@ -164,5 +184,8 @@
 
 
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="index.js"></script>
 
 </html>
