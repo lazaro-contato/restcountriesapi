@@ -1,3 +1,5 @@
+/* Adicionando a função do filtro de continentes */
+
 $(document).ready(function(){
     $(".drop-data").click(function(){
         $(".dropdown ul").toggleClass("active");

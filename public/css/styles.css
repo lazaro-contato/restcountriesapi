@@ -50,10 +50,14 @@ ul {
   fill: gray;
 }
 
+.itens-flex{
+  width: 85%;
+  margin: auto;
+}
+
 .input-box{
   margin: auto;
   margin-top: 20px;
-  width: 85%;
   height: 42px;
 
   border: 1px solid none;
@@ -67,7 +71,6 @@ ul {
 
 .wrapper{
   display: flex;
-  justify-content: center;
   align-items: center;
 
   margin-top: 40px;
@@ -79,7 +82,7 @@ ul {
 
 .dropdown{
   width: 175px;
-  height: 40px;
+  height: 42px;
   border-radius: 5px;
   border: 1px solid none;
   background: hsl(0, 0%, 100%);
@@ -157,7 +160,7 @@ ul {
 /* CARD COUNTRY */
 
 .card-model{
-  width: 80%;
+  width: 85%;
   margin: 50px auto auto auto;
 
   display: flex;
@@ -196,4 +199,52 @@ ul {
 
   background-color: red;
   
+}
+
+@media (min-width:750px){
+  .card-model{
+
+    display: flex;
+    justify-content:end;
+    flex-wrap:wrap;
+  }
+}
+
+@media (min-width:650px){
+
+  .card-country{
+
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+  }
+  
+}
+
+@media (min-width:700px){
+
+  .input-box{
+    width: 592px;
+    margin: 20px 0 0 0;
+  }
+
+}
+
+@media (min-width:1000px){
+
+  .input-box{
+    width: 592px;
+  }
+
+  .itens-flex{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .list-box{
+    width: 100%;
+  }
+
+  .wrapper{
+    margin-top: 20px;
+  }
 }
