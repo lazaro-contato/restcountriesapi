@@ -1,26 +1,8 @@
-// Express //
-const express = require("express");
-const app = express();
+import app from "./app.js"
+import dotenv from 'dotenv/config'
 
-// Body Parser //
-const bodyParser = require("body-parser");
+const localPort = process.env.PORT || 8080;
 
-
-
-app.use(bodyParser.urlencoded({ extended: true}));
-app.use(express.json())
-
-app.use(express.static("public"));
-app.use(express.static(__dirname));
-
-
-
-app.get("/", function(req, res){
-    res.sendFile(__dirname + "/views/index.html")
-
-})
-
-
-app.listen(3000, function(){
-    console.log("Server running")
+app.listen(localPort, (req, res) => {
+    console.log(`Server is running at localhost:${localPort}`)
 })
