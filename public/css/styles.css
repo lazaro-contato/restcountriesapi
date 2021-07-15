@@ -193,16 +193,13 @@ ul {
 
   display: flex;
   justify-content: center;
- 
   
-
-
- 
 }
 
 .card-country{
   width: 280px;
   height: 380px;
+  cursor: pointer;
 
 
   border-radius: 10px;
