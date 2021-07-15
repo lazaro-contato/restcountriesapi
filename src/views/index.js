@@ -28,17 +28,18 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
                     </div>
                       <div class="country-info">
                       <h3 class="country-name">${countryName}</h3>
-                      <p>Population: <span>${countryPopulation}</span></p>
+                      <p class="population-number">Population: <span>${countryPopulation}</span></p>
                       <p>Region: <span>${countryRegion}</span></p>
                       <p>Capital: <span>${countryCapital}</span></p>
                     </div>
                    </section>`;
 
         $(".card-model").append(element);
+        
       });
       $(".card-country").click(function () {
-        prompt("ola");
-  
+        const countryNameClicked = $(this).children(".country-info").children(".country-name").text()
+        console.log(countryNameClicked)
       });
      
     });
