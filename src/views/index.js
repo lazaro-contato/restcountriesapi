@@ -13,6 +13,7 @@ $(document).ready(function(){
             $(".dropdown ul").removeClass("active");
         });
     })
+    const a
 
             fetch('https://restcountries.eu/rest/v2/all').then((response) =>{
             response.json().then((data) => {
