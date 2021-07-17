@@ -38,8 +38,14 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
         
       });
       $(".card-country").click(function () {
-        const countryNameClicked = $(this).children(".country-info").children(".country-name").text()
+        const countryNameClicked = $(this).children(".country-info").children(".country-name").text().toLowerCase().replace(" ","%20");
+
+        fetch (`https://restcountries.eu/rest/v2/name/${countryNameClicked}`).then((response) => {
+          response.json()
+        })
         console.log(countryNameClicked)
+
+
       });
      
     });
