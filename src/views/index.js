@@ -40,14 +40,50 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
       $(".card-country").click(function () {
         const countryNameClicked = $(this).children(".country-info").children(".country-name").text().toLowerCase().replace(" ","%20");
 
+       
+
         fetch (`https://restcountries.eu/rest/v2/name/${countryNameClicked}`).then((response) => {
-          response.json()
-        })
-        console.log(countryNameClicked)
+         response.json()
+         .then(dataCountry => {
 
-
-      });
+           let currentCountry = dataCountry[0]
+           let singleCountryFlag = currentCountry.flag
+           let singleCountryName = currentCountry.name;
+           let singleCountryNativeName = currentCountry.nativeName;
+           let singleCountryPopulation = currentCountry.population;
+           let singleCountryRegion = currentCountry.region;
+           let singleCountrySubRegion = currentCountry.subregion;
+           let singleCountryCapital = currentCountry.capital;
+           let singleCountryTopLevelDomain = currentCountry.topLevelDomain;
+           let singleCountryCurrencies = currentCountry.currencies;
+           let singleCountryLanguages = currentCountry.languages;
      
+           localStorage.setItem('flag', `${singleCountryFlag}`)
+           localStorage.setItem('name', `${singleCountryName}`)
+           localStorage.setItem('nativeName', `${singleCountryNativeName}`)
+           localStorage.setItem('population', `${singleCountryPopulation}`)
+           localStorage.setItem('region', `${singleCountryRegion}`)
+           localStorage.setItem('subregion', `${singleCountrySubRegion}`)
+           localStorage.setItem('capital', `${singleCountryCapital}`)
+           localStorage.setItem('topLevelDomain', `${singleCountryTopLevelDomain}`)
+           localStorage.setItem('currencies', `${singleCountryCurrencies}`)
+           localStorage.setItem('languages', `${singleCountryLanguages}`)
+
+           console.log(dataCountry)
+           window.location = "country.html"
+         })   
+        })
+      });
+         $(".first-country-flag").attr("src", `${localStorage.getItem('flag')}`)
+         $(".mainCountryName").text(`${localStorage.getItem('name')}`)
+         $(".native-name-text").text(`${localStorage.getItem('nativeName')}`)
+         $(".population-text").text(`${localStorage.getItem('population')}`)
+         $(".region-text").text(`${localStorage.getItem('region')}`)
+         $(".sub-region-text").text(`${localStorage.getItem('subregion')}`)
+         $(".capital-text").text(`${localStorage.getItem('capital')}`)
+         $(".top-level-domain-text").text(`${localStorage.getItem('topLevelDomain')}`)
+         $(".currencies-text").text(`${localStorage.getItem('currencies')}`)
+         $(".language-text").text(`${localStorage.getItem('languages')}`)
     });
   });
 });
