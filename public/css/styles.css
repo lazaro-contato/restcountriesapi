@@ -28,6 +28,10 @@ ul {
   padding: auto 0;
 }
 
+.separator-header h3 {
+  cursor: pointer;
+}
+
 .separator-header h4 {
   cursor: pointer;
 

@@ -55,8 +55,19 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
            let singleCountrySubRegion = currentCountry.subregion;
            let singleCountryCapital = currentCountry.capital;
            let singleCountryTopLevelDomain = currentCountry.topLevelDomain;
-           let singleCountryCurrencies = currentCountry.currencies;
-           let singleCountryLanguages = currentCountry.languages;
+           let singleCountryCurrencies = currentCountry.currencies.forEach((currencies) => {
+             let countryCurrency =currencies.name
+             localStorage.setItem('currencies', `${countryCurrency}`)
+             
+           });
+           
+           let singleCountryLanguages = currentCountry.languages.forEach((languages) => {
+             let languagesArray = []
+             let countryLanguage = languages.name
+             languagesArray.push(countryLanguage)
+             console.log(languagesArray)
+             localStorage.setItem('languages', `${countryLanguage.toString()}`)
+           })
      
            localStorage.setItem('flag', `${singleCountryFlag}`)
            localStorage.setItem('name', `${singleCountryName}`)
@@ -66,9 +77,9 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
            localStorage.setItem('subregion', `${singleCountrySubRegion}`)
            localStorage.setItem('capital', `${singleCountryCapital}`)
            localStorage.setItem('topLevelDomain', `${singleCountryTopLevelDomain}`)
-           localStorage.setItem('currencies', `${singleCountryCurrencies}`)
-           localStorage.setItem('languages', `${singleCountryLanguages}`)
-
+           
+           console.log(singleCountryCurrencies)
+           console.log(singleCountryLanguages)
            console.log(dataCountry)
            window.location = "country.html"
          })   
@@ -86,4 +97,12 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
          $(".language-text").text(`${localStorage.getItem('languages')}`)
     });
   });
+
+  $(".back-button").click(() => {
+    window.location = "index.html"
+  })
+
+  $(".separator-header h3").click(() => {
+    window.location = "index.html"
+  })
 });
