@@ -46,6 +46,7 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
          response.json()
          .then(dataCountry => {
 
+          // Defining the variables //
            let currentCountry = dataCountry[0]
            let singleCountryFlag = currentCountry.flag
            let singleCountryName = currentCountry.name;
@@ -55,20 +56,39 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
            let singleCountrySubRegion = currentCountry.subregion;
            let singleCountryCapital = currentCountry.capital;
            let singleCountryTopLevelDomain = currentCountry.topLevelDomain;
-           let singleCountryCurrencies = currentCountry.currencies.forEach((currencies) => {
-             let countryCurrency =currencies.name
-             localStorage.setItem('currencies', `${countryCurrency}`)
-             
-           });
            
-           let singleCountryLanguages = currentCountry.languages.forEach((languages) => {
-             let languagesArray = []
-             let countryLanguage = languages.name
-             languagesArray.push(countryLanguage)
-             console.log(languagesArray)
-             localStorage.setItem('languages', `${countryLanguage.toString()}`)
+
+
+           // Adding the currencies of a country in a string //
+           let arrayCurrencies = []
+           currentCountry.currencies.forEach((currencies) => {
+             let countryCurrency = currencies.name
+             arrayCurrencies.push(countryCurrency)
+             let stringCurrencies = arrayCurrencies.toString().replaceAll(",", ", ")
+             localStorage.setItem('currencies', `${stringCurrencies}`)
+           });
+
+
+           // Adding the languages of a country in a string //
+           let arrayLanguages = []
+           currentCountry.languages.forEach((languages) => {
+            let countryLanguage = languages.name
+            arrayLanguages.push(countryLanguage)
+            let stringLanguages = arrayLanguages.toString().replaceAll(",", ", ")
+            localStorage.setItem('languages', `${stringLanguages}`)
            })
-     
+
+           // Adding the border countries in a string //
+           let arrayBorderCountries = []
+           currentCountry.borders.forEach((borders) => {
+             let countryBorders = borders
+             arrayBorderCountries.push(countryBorders)
+             let stringBorders = arrayBorderCountries.toString().replaceAll(",", ", ")
+             localStorage.setItem('borderCountries', `${stringBorders}`)
+           })
+
+
+           // Adding the values of API to local storage //
            localStorage.setItem('flag', `${singleCountryFlag}`)
            localStorage.setItem('name', `${singleCountryName}`)
            localStorage.setItem('nativeName', `${singleCountryNativeName}`)
@@ -77,14 +97,18 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
            localStorage.setItem('subregion', `${singleCountrySubRegion}`)
            localStorage.setItem('capital', `${singleCountryCapital}`)
            localStorage.setItem('topLevelDomain', `${singleCountryTopLevelDomain}`)
+
            
-           console.log(singleCountryCurrencies)
-           console.log(singleCountryLanguages)
-           console.log(dataCountry)
+
            window.location = "country.html"
+
+           console.log(dataCountry)
+           console.log(dataCountry[0].borders)
          })   
         })
       });
+
+        // Selecting the elements in country.html and assigning the text of the local storage //
          $(".first-country-flag").attr("src", `${localStorage.getItem('flag')}`)
          $(".mainCountryName").text(`${localStorage.getItem('name')}`)
          $(".native-name-text").text(`${localStorage.getItem('nativeName')}`)
@@ -95,6 +119,8 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
          $(".top-level-domain-text").text(`${localStorage.getItem('topLevelDomain')}`)
          $(".currencies-text").text(`${localStorage.getItem('currencies')}`)
          $(".language-text").text(`${localStorage.getItem('languages')}`)
+         $(".borders-text").text(`${localStorage.getItem('borderCountries')}`)
+
     });
   });
 
