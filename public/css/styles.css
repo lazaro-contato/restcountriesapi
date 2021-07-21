@@ -291,7 +291,6 @@ ul {
 .country-container {
   margin: 30px auto auto auto;
   width: 85%;
-
 }
 
 .first-country-flag {
@@ -313,7 +312,7 @@ ul {
   font-size: 14px;
 }
 
-.container-data-elements div p span{
+.container-data-elements div p span {
   font-weight: 400;
   font-size: 14px;
 }

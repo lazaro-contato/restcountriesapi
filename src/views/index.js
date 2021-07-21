@@ -22,7 +22,7 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
         let countryRegion = country.region;
         let countryCapital = country.capital;
 
-        const element = `<section class="card-country">
+        const element = `<section class="card-country" id="${countryName}">
                     <div>
                       <img src="${country.flag}" alt="country-flag"> 
                     </div>
@@ -131,4 +131,25 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
   $(".separator-header h3").click(() => {
     window.location = "index.html"
   })
+
+  $(".input-box").keyup(() => {
+    var input = $("#input-name-country");
+    var filter = input[0].value.toUpperCase();
+    var cards = $(".card-country")
+
+    console.log(input)
+    console.log(filter)
+
+    for (i = 0; i < cards.length; i++){
+      a = cards[i].getElementsByTagName("h3")[0]
+      textCountry = a.textContent || a.innetText;
+      if(textCountry.toUpperCase().indexOf(filter) > -1){
+        cards[i].style.display = ""
+      } else {
+        cards[i].display = "none";
+      }
+      
+    }
+  })
+
 });
