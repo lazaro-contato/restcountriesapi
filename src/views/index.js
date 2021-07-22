@@ -8,12 +8,16 @@ $(document).ready(function () {
   $(".drop-data").click(function () {
     $(".dropdown ul li").click(function () {
       var text = $(this).text();
-      $(".default-option").text(text);
-      $(".dropdown ul").removeClass("active");
+
+        $(".default-option").text(text);
+        $(".dropdown ul").removeClass("active");
+        RegionFilter(text)
+
+    
     });
   });
 
-fetch("https://restcountries.eu/rest/v2/all").then((response) => {
+  fetch("https://restcountries.eu/rest/v2/all").then((response) => {
     response.json().then((data) => {
       data.forEach((country) => {
 
@@ -29,7 +33,7 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
                       <div class="country-info">
                       <h3 class="country-name">${countryName}</h3>
                       <p class="population-number">Population: <span>${countryPopulation}</span></p>
-                      <p>Region: <span>${countryRegion}</span></p>
+                      <p class="regionCountryCard">Region: <span>${countryRegion}</span></p>
                       <p>Capital: <span>${countryCapital}</span></p>
                     </div>
                    </section>`;
@@ -121,8 +125,12 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
          $(".language-text").text(`${localStorage.getItem('languages')}`)
          $(".borders-text").text(`${localStorage.getItem('borderCountries')}`)
 
+         
+
     });
   });
+  
+
 
   $(".back-button").click(() => {
     window.location = "index.html"
@@ -132,24 +140,44 @@ fetch("https://restcountries.eu/rest/v2/all").then((response) => {
     window.location = "index.html"
   })
 
-  $(".input-box").keyup(() => {
-    var input = $("#input-name-country");
-    var filter = input[0].value.toUpperCase();
-    var cards = $(".card-country")
+  // Adding the filter to the input
 
-    console.log(input)
-    console.log(filter)
+$(".input-box").keyup(() => {
+  var input = $("#input-name-country");
+  var inputData = input[0];
+  var filter = inputData.value.toUpperCase();
+  var cards = $(".card-country");
 
-    for (i = 0; i < cards.length; i++){
-      a = cards[i].getElementsByTagName("h3")[0]
-      textCountry = a.textContent || a.innetText;
-      if(textCountry.toUpperCase().indexOf(filter) > -1){
-        cards[i].style.display = ""
-      } else {
-        cards[i].display = "none";
-      }
-      
+  for (i = 0; i < cards.length; i++){
+    a = cards[i].getElementsByTagName("h3")[0]
+    textCountry = a.textContent || a.innetText; 
+    if(textCountry.toUpperCase().indexOf(filter) > -1){
+      cards[i].style.display = "block"
+    } else {
+      cards[i].style.display = "none";
     }
-  })
-
+  }
 });
+
+// Adding the filter to the dropdown
+
+function RegionFilter(region) {
+  var regionFilterName = region.toUpperCase();
+  var country = $(".card-country");
+
+  for (i = 0; i < country.length; i++){
+    a = country[i].getElementsByClassName("regionCountryCard")[0]
+    textCountry = a.textContent || a.innetText; 
+
+      if(textCountry.toUpperCase().indexOf(regionFilterName) > -1){
+        country[i].style.display = ""
+      } else {
+        country[i].style.display = "none";
+      }
+  }
+
+
+}
+
+
+})

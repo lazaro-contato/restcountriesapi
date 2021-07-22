@@ -10,6 +10,15 @@ ul {
   list-style-type: none;
 }
 
+.display-none{
+  display: none;
+}
+
+.display-block{
+  display: block;
+}
+
+
 /* HEADER */
 
 .header-container {
