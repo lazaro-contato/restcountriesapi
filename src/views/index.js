@@ -12,8 +12,13 @@ $(document).ready(function () {
         $(".default-option").text(text);
         $(".dropdown ul").removeClass("active");
         RegionFilter(text)
-
-    
+        
+        if (text == "All"){
+          var countryCards = $(".card-country");
+          for(var i = 0; i < countryCards.length; i++){
+            countryCards[i].style.display = ""
+        }
+        }
     });
   });
 
@@ -38,13 +43,11 @@ $(document).ready(function () {
                     </div>
                    </section>`;
 
-        $(".card-model").append(element);
-        
+        $(".card-model").append(element);       
       });
-      $(".card-country").click(function () {
-        const countryNameClicked = $(this).children(".country-info").children(".country-name").text().toLowerCase().replace(" ","%20");
 
-       
+      $(".card-country").click(function () {
+        const countryNameClicked = $(this).children(".country-info").children(".country-name").text().toLowerCase().replace(" ","%20");       
 
         fetch (`https://restcountries.eu/rest/v2/name/${countryNameClicked}`).then((response) => {
          response.json()
@@ -61,8 +64,6 @@ $(document).ready(function () {
            let singleCountryCapital = currentCountry.capital;
            let singleCountryTopLevelDomain = currentCountry.topLevelDomain;
            
-
-
            // Adding the currencies of a country in a string //
            let arrayCurrencies = []
            currentCountry.currencies.forEach((currencies) => {
@@ -102,8 +103,6 @@ $(document).ready(function () {
            localStorage.setItem('capital', `${singleCountryCapital}`)
            localStorage.setItem('topLevelDomain', `${singleCountryTopLevelDomain}`)
 
-           
-
            window.location = "country.html"
 
            console.log(dataCountry)
@@ -124,13 +123,9 @@ $(document).ready(function () {
          $(".currencies-text").text(`${localStorage.getItem('currencies')}`)
          $(".language-text").text(`${localStorage.getItem('languages')}`)
          $(".borders-text").text(`${localStorage.getItem('borderCountries')}`)
-
-         
-
     });
   });
   
-
 
   $(".back-button").click(() => {
     window.location = "index.html"
@@ -170,14 +165,12 @@ function RegionFilter(region) {
     textCountry = a.textContent || a.innetText; 
 
       if(textCountry.toUpperCase().indexOf(regionFilterName) > -1){
-        country[i].style.display = ""
+        country[i].style.display = "";
       } else {
         country[i].style.display = "none";
-      }
-  }
-
-
+      } 
+  }   
+  
 }
-
 
 })
