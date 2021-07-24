@@ -1,3 +1,4 @@
+
 /* Adding a continents filter function */
 
 $(document).ready(function () {
@@ -35,7 +36,7 @@ $(document).ready(function () {
       data.forEach((country) => {
 
         let countryName = country.name;
-        let countryPopulation = country.population;
+        let countryPopulation = country.population.toLocaleString();
         let countryRegion = country.region;
         let countryCapital = country.capital;
 
@@ -66,7 +67,7 @@ $(document).ready(function () {
            let singleCountryFlag = currentCountry.flag;
            let singleCountryName = currentCountry.name;
            let singleCountryNativeName = currentCountry.nativeName;
-           let singleCountryPopulation = currentCountry.population;
+           let singleCountryPopulation = currentCountry.population.toLocaleString();
            let singleCountryRegion = currentCountry.region;
            let singleCountrySubRegion = currentCountry.subregion;
            let singleCountryCapital = currentCountry.capital;
@@ -94,8 +95,10 @@ $(document).ready(function () {
            // Adding the border countries in a string //
            let arrayBorderCountries = []
            currentCountry.borders.forEach((borders) => {
+             
              let countryBorders = borders;
              arrayBorderCountries.push(countryBorders);
+
              let stringBorders = arrayBorderCountries.toString().replaceAll(",", ", ");
              localStorage.setItem('borderCountries', `${stringBorders}`);
            })
@@ -129,6 +132,8 @@ $(document).ready(function () {
          $(".currencies-text").text(`${localStorage.getItem('currencies')}`);
          $(".language-text").text(`${localStorage.getItem('languages')}`);
          $(".borders-text").text(`${localStorage.getItem('borderCountries')}`);
+
+
     });
   });
 
@@ -137,7 +142,8 @@ $(document).ready(function () {
   })
 
   $(".separator-header h3").click(() => {
-    window.location = "index.html";
+    $(".population-number").mask("#,##0.00", {reverse: true});
+    // window.location = "index.html";// 
   })
 
   // Adding the filter to the input

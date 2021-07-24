@@ -4,9 +4,7 @@
   "version": "1.0.0",
   "main": "src/server.js",
   "devDependencies": {},
-  "scripts": {
-
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lazaro-contato/restcountriesapi.git"
@@ -17,7 +15,6 @@
     "url": "https://github.com/lazaro-contato/restcountriesapi/issues"
   },
   "homepage": "https://github.com/lazaro-contato/restcountriesapi#readme",
-
   "dependencies": {
     "axios": "^0.21.1"
   }
