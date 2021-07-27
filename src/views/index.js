@@ -1,4 +1,6 @@
 
+//https://restcountries.eu/rest/v2/alpha?codes=bra;col//
+
 /* Adding a continents filter function */
 
 $(document).ready(function () {
@@ -7,29 +9,7 @@ $(document).ready(function () {
   let activesCountries = [];
 
 
-  // Filter of regions //
-  $(".drop-data").click(function () {
-    $(".dropdown ul").toggleClass("active");
-  });
-
-  $(".drop-data").click(function () {
-    $(".dropdown ul li").click(function () {
-      var text = $(this).text();
-
-        $(".default-option").text(text);
-        $(".dropdown ul").removeClass("active");
-        
-        RegionFilter(text)
-
-        if (text == "All"){
-          var countryCards = $(".card-country");
-          for(var i = 0; i < countryCards.length; i++){
-            activesCountries = $(".card-country");
-            countryCards[i].style.display = "";
-        }
-      }
-    });
-  });
+  // Searching the data //
 
   fetch("https://restcountries.eu/rest/v2/all").then((response) => {
     response.json().then((data) => {
@@ -95,10 +75,8 @@ $(document).ready(function () {
            // Adding the border countries in a string //
            let arrayBorderCountries = []
            currentCountry.borders.forEach((borders) => {
-             
              let countryBorders = borders;
              arrayBorderCountries.push(countryBorders);
-
              let stringBorders = arrayBorderCountries.toString().replaceAll(",", ", ");
              localStorage.setItem('borderCountries', `${stringBorders}`);
            })
@@ -132,18 +110,68 @@ $(document).ready(function () {
          $(".currencies-text").text(`${localStorage.getItem('currencies')}`);
          $(".language-text").text(`${localStorage.getItem('languages')}`);
          $(".borders-text").text(`${localStorage.getItem('borderCountries')}`);
-
-
     });
   });
+  
+
+
+  // Filter of regions //
+  $(".drop-data").click(function () {
+    $(".dropdown ul").toggleClass("active");
+  });
+
+
+  $(".drop-data").click(function () {
+    $(".dropdown ul li").click(function () {
+      let text = $(this).text();
+
+        $(".default-option").text(text);
+        $(".dropdown ul").removeClass("active");
+        
+        RegionFilter(text)
+
+        if (text == "All"){
+          let countryCards = $(".card-country");
+          for(var i = 0; i < countryCards.length; i++){
+            activesCountries = $(".card-country");
+            countryCards[i].style.display = "";
+        }
+
+        
+      }
+    });
+  });
+
+  
+  // Adding the filter to the dropdown
+  function RegionFilter(region) {
+    let regionFilterName = region.toUpperCase();
+    let country = $(".card-country");
+    let arrayActivesRegion = [];
+  
+
+    for (i = 0; i < country.length; i++){
+      a = country[i].getElementsByClassName("regionCountryCard")[0];
+      textCountry = a.textContent || a.innetText; 
+  
+        if(textCountry.toUpperCase().indexOf(regionFilterName) > -1){
+          country[i].style.display = "";
+          arrayActivesRegion.push(country[i]);
+        } else {
+          country[i].style.display = "none";
+        } 
+    }  
+    activesCountries = arrayActivesRegion;
+       
+
+  }
 
   $(".back-button").click(() => {
     window.location = "index.html";
   })
 
   $(".separator-header h3").click(() => {
-    $(".population-number").mask("#,##0.00", {reverse: true});
-    // window.location = "index.html";// 
+    window.location = "index.html";
   })
 
   // Adding the filter to the input
@@ -152,7 +180,16 @@ $(".input-box").keyup(() => {
   var input = $("#input-name-country");
   var inputData = input[0];
   var filter = inputData.value.toUpperCase();
-  var cards = activesCountries;
+  var filterSelected = $(".default-option").text()
+
+  var cards = $(".card-country");
+
+  if (filterSelected == "All" || filterSelected == "Filter by region"){
+    var cards = $(".card-country");
+    
+  } else {
+    var cards = activesCountries;
+  }
 
   for (i = 0; i < cards.length; i++){
     a = cards[i].getElementsByTagName("h3")[0]
@@ -164,28 +201,4 @@ $(".input-box").keyup(() => {
     }
   }
 });
-
-// Adding the filter to the dropdown
-
-function RegionFilter(region) {
-  var regionFilterName = region.toUpperCase();
-  var country = $(".card-country");
-  var arrayActivesRegion = [];
-
-  for (i = 0; i < country.length; i++){
-    a = country[i].getElementsByClassName("regionCountryCard")[0];
-    textCountry = a.textContent || a.innetText; 
-
-      if(textCountry.toUpperCase().indexOf(regionFilterName) > -1){
-        country[i].style.display = "";
-        arrayActivesRegion.push(country[i]);
-      } else {
-        country[i].style.display = "none";
-      } 
-  }  
-  activesCountries = arrayActivesRegion;
-}
-
-
-
 })
