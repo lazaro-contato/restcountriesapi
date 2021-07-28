@@ -1,6 +1,4 @@
 
-//https://restcountries.eu/rest/v2/alpha?codes=bra;col//
-
 /* Adding a continents filter function */
 
 $(document).ready(function () {
@@ -75,11 +73,35 @@ $(document).ready(function () {
            // Adding the border countries in a string //
            let arrayBorderCountries = []
            currentCountry.borders.forEach((borders) => {
-             let countryBorders = borders;
-             arrayBorderCountries.push(countryBorders);
-             let stringBorders = arrayBorderCountries.toString().replaceAll(",", ", ");
-             localStorage.setItem('borderCountries', `${stringBorders}`);
+             arrayBorderCountries.push(borders);
            })
+
+           // Searching the border countries on API and returning in country page
+
+           let urlSearch = "https://restcountries.eu/rest/v2/alpha?codes="
+           let newUrl = ""
+
+           arrayBorderCountries.forEach((borderCountry) => {
+            
+            urlSearch += ";" + borderCountry.toLowerCase()
+            newUrl = urlSearch.replace(";","")
+           });
+           console.log(newUrl)
+
+           let finalArrayBorderCountries = []
+           fetch(newUrl).then((response) => {
+             response.json()
+             .then((countries) => {
+               countries.forEach((item) => {
+                finalArrayBorderCountries.push(item.name)
+                console.log(item.name)
+              })
+              localStorage.setItem('borderCountries', `${finalArrayBorderCountries}`);
+              console.log(finalArrayBorderCountries)
+
+              }) 
+           })
+
 
 
            // Adding the values of API to local storage //
@@ -109,6 +131,7 @@ $(document).ready(function () {
          $(".top-level-domain-text").text(`${localStorage.getItem('topLevelDomain')}`);
          $(".currencies-text").text(`${localStorage.getItem('currencies')}`);
          $(".language-text").text(`${localStorage.getItem('languages')}`);
+
          $(".borders-text").text(`${localStorage.getItem('borderCountries')}`);
     });
   });
