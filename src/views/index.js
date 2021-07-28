@@ -89,20 +89,28 @@ $(document).ready(function () {
            console.log(newUrl)
 
            let finalArrayBorderCountries = []
-           fetch(newUrl).then((response) => {
-             response.json()
-             .then((countries) => {
-               countries.forEach((item) => {
-                finalArrayBorderCountries.push(item.name)
-                console.log(item.name)
-              })
-              localStorage.setItem('borderCountries', `${finalArrayBorderCountries}`);
-              console.log(finalArrayBorderCountries)
 
-              }) 
-           })
+           if (arrayBorderCountries.length == 0){
+             console.log("sim")
+            localStorage.setItem('borderCountries', `${""}`);
 
+           }else {
+            fetch(newUrl).then((response) => {
+              response.json()
+              .then((countries) => {
+                console.log(countries)
+                countries.forEach((item) => {
+                 finalArrayBorderCountries.push(item.name)
+                 console.log(item.name)
+                 console.log(finalArrayBorderCountries)
+                 localStorage.setItem('borderCountries', `${finalArrayBorderCountries}`);
+               })
+               
+               }) 
+            })
+           }
 
+          // Eu estava verificando porque que quando eu pesquisava por um país os countries borders nao eram retornados mas ele apareceia no console log
 
            // Adding the values of API to local storage //
            localStorage.setItem('flag', `${singleCountryFlag}`);
@@ -114,7 +122,7 @@ $(document).ready(function () {
            localStorage.setItem('capital', `${singleCountryCapital}`);
            localStorage.setItem('topLevelDomain', `${singleCountryTopLevelDomain}`);
 
-           window.location = "country.html";
+           //window.location = "country.html";
 
          })   
         })
@@ -143,7 +151,6 @@ $(document).ready(function () {
     $(".dropdown ul").toggleClass("active");
   });
 
-
   $(".drop-data").click(function () {
     $(".dropdown ul li").click(function () {
       let text = $(this).text();
@@ -159,8 +166,6 @@ $(document).ready(function () {
             activesCountries = $(".card-country");
             countryCards[i].style.display = "";
         }
-
-        
       }
     });
   });
@@ -185,17 +190,21 @@ $(document).ready(function () {
         } 
     }  
     activesCountries = arrayActivesRegion;
-       
-
   }
+
+  // Back button
 
   $(".back-button").click(() => {
     window.location = "index.html";
   })
 
+
+  // Home page direct link
+
   $(".separator-header h3").click(() => {
     window.location = "index.html";
   })
+
 
   // Adding the filter to the input
 

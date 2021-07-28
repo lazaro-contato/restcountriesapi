@@ -330,6 +330,10 @@ ul {
   margin-top: 35px;
 }
 
+.borders-text {
+  color: red;
+}
+
 @media (min-width: 700px) {
   .first-country-flag {
     width: 600px;
