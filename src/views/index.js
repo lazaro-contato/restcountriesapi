@@ -94,6 +94,8 @@ $(document).ready(function () {
                }).then(localStorageAdd())
             })
           }
+
+          // preciso adicionar o json de elementos ao localstorage e criar um foeach que inclua os elementos dentro de uma span no meu html
           
           // Adding the values of API to local storage using a function//
 
