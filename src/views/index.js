@@ -96,6 +96,8 @@ $(document).ready(function () {
           }
 
           // preciso adicionar o json de elementos ao localstorage e criar um foeach que inclua os elementos dentro de uma span no meu html
+
+          // cada um dos elementos deverá ser personalizado corretamente.
           
           // Adding the values of API to local storage using a function//
 
