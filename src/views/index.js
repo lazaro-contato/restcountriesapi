@@ -83,22 +83,14 @@ $(document).ready(function () {
                 console.log(countries)
                 countries.forEach((item) => {
                  finalArrayBorderCountries.push(item.name)
-
-
-                 const countryElement = `<span class="box-border-countries">${item.name}</span>`
-                 console.log(countryElement)
-                 $("#ip-country").html(countryElement)
-
-                 localStorage.setItem('borderCountries', `${finalArrayBorderCountries}`);
-               })
+               });
+               localStorage.setItem('borderCountries', JSON.stringify(finalArrayBorderCountries));
                }).then(localStorageAdd())
             })
           }
 
           // preciso adicionar o json de elementos ao localstorage e criar um foeach que inclua os elementos dentro de uma span no meu html
 
-          // cada um dos elementos deverá ser personalizado corretamente.
-          
           // Adding the values of API to local storage using a function//
 
           function localStorageAdd(){
@@ -129,6 +121,8 @@ $(document).ready(function () {
              localStorage.setItem('currencies', `${stringCurrencies}`);
             });
 
+            
+
             window.location = "country.html";
           }
          });
@@ -146,8 +140,29 @@ $(document).ready(function () {
          $(".top-level-domain-text").text(`${localStorage.getItem('topLevelDomain')}`);
          $(".currencies-text").text(`${localStorage.getItem('currencies')}`);
          $(".language-text").text(`${localStorage.getItem('languages')}`);
+
+         //$(".borders-text").text(`${localStorage.getItem('borderCountries')}`);
+
+          if (localStorage.getItem('borderCountries') == "") {
+
+          }else{
+            const arrayCountriesBorderToSet = JSON.parse(localStorage.getItem('borderCountries'));
+
+            arrayCountriesBorderToSet.forEach(country => {
+            let countryName = country.toString()
+            const countryElement = `<span class="box-border-countries">${countryName}</span>`;
+            $("#ip-country").append(countryElement);
+
+            });
+            
+            console.log(arrayCountriesBorderToSet)
+          }
          
-         $(".borders-text").text(`${localStorage.getItem('borderCountries')}`);
+
+
+          //$("#ip-country").append(countryElement);
+
+
     });
   });
   
