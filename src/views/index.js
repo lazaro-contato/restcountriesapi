@@ -50,27 +50,9 @@ $(document).ready(function () {
            let singleCountrySubRegion = currentCountry.subregion;
            let singleCountryCapital = currentCountry.capital;
            let singleCountryTopLevelDomain = currentCountry.topLevelDomain;
-           
-           // Adding the currencies of a country in a string //
-           let arrayCurrencies = []
-           currentCountry.currencies.forEach((currencies) => {
-             let countryCurrency = currencies.name;
-             arrayCurrencies.push(countryCurrency);
-             let stringCurrencies = arrayCurrencies.toString().replaceAll(",", ", ");
-             localStorage.setItem('currencies', `${stringCurrencies}`);
-           });
+                      
 
-
-           // Adding the languages of a country in a string //
-           let arrayLanguages = []
-           currentCountry.languages.forEach((languages) => {
-            let countryLanguage = languages.name;
-            arrayLanguages.push(countryLanguage);
-            let stringLanguages = arrayLanguages.toString().replaceAll(",", ", ");
-            localStorage.setItem('languages', `${stringLanguages}`);
-           })
-
-           // Adding the border countries in a string //
+           // Adding the border countries in a array //
            let arrayBorderCountries = []
            currentCountry.borders.forEach((borders) => {
              arrayBorderCountries.push(borders);
@@ -86,13 +68,13 @@ $(document).ready(function () {
             urlSearch += ";" + borderCountry.toLowerCase()
             newUrl = urlSearch.replace(";","")
            });
-           console.log(newUrl)
 
            let finalArrayBorderCountries = []
 
            if (arrayBorderCountries.length == 0){
-             console.log("sim")
             localStorage.setItem('borderCountries', `${""}`);
+            localStorageAdd()
+
 
            }else {
             fetch(newUrl).then((response) => {
@@ -101,31 +83,52 @@ $(document).ready(function () {
                 console.log(countries)
                 countries.forEach((item) => {
                  finalArrayBorderCountries.push(item.name)
-                 console.log(item.name)
-                 console.log(finalArrayBorderCountries)
+
+
+                 const countryElement = `<span class="box-border-countries">${item.name}</span>`
+                 console.log(countryElement)
+                 $("#ip-country").html(countryElement)
+
                  localStorage.setItem('borderCountries', `${finalArrayBorderCountries}`);
                })
-               
-               }) 
+               }).then(localStorageAdd())
             })
-           }
+          }
+          
+          // Adding the values of API to local storage using a function//
 
-          // Eu estava verificando porque que quando eu pesquisava por um país os countries borders nao eram retornados mas ele apareceia no console log
+          function localStorageAdd(){
+            localStorage.setItem('flag', `${singleCountryFlag}`);
+            localStorage.setItem('name', `${singleCountryName}`);
+            localStorage.setItem('nativeName', `${singleCountryNativeName}`);
+            localStorage.setItem('population', `${singleCountryPopulation}`);
+            localStorage.setItem('region', `${singleCountryRegion}`);
+            localStorage.setItem('subregion', `${singleCountrySubRegion}`);
+            localStorage.setItem('capital', `${singleCountryCapital}`);
+            localStorage.setItem('topLevelDomain', `${singleCountryTopLevelDomain}`);
 
-           // Adding the values of API to local storage //
-           localStorage.setItem('flag', `${singleCountryFlag}`);
-           localStorage.setItem('name', `${singleCountryName}`);
-           localStorage.setItem('nativeName', `${singleCountryNativeName}`);
-           localStorage.setItem('population', `${singleCountryPopulation}`);
-           localStorage.setItem('region', `${singleCountryRegion}`);
-           localStorage.setItem('subregion', `${singleCountrySubRegion}`);
-           localStorage.setItem('capital', `${singleCountryCapital}`);
-           localStorage.setItem('topLevelDomain', `${singleCountryTopLevelDomain}`);
+            // Adding the languages of a country in a string //
+           let arrayLanguages = []
+           currentCountry.languages.forEach((languages) => {
+            let countryLanguage = languages.name;
+            arrayLanguages.push(countryLanguage);
+            let stringLanguages = arrayLanguages.toString().replaceAll(",", ", ");
+            localStorage.setItem('languages', `${stringLanguages}`);
+           });
 
-           //window.location = "country.html";
+            // Adding the currencies of a country in a string //
+             let arrayCurrencies = []
+             currentCountry.currencies.forEach((currencies) => {
+             let countryCurrency = currencies.name;
+             arrayCurrencies.push(countryCurrency);
+             let stringCurrencies = arrayCurrencies.toString().replaceAll(",", ", ");
+             localStorage.setItem('currencies', `${stringCurrencies}`);
+            });
 
-         })   
-        })
+            window.location = "country.html";
+          }
+         });
+        });
       });
 
         // Selecting the elements in country.html and assigning the text of the local storage //
@@ -139,14 +142,12 @@ $(document).ready(function () {
          $(".top-level-domain-text").text(`${localStorage.getItem('topLevelDomain')}`);
          $(".currencies-text").text(`${localStorage.getItem('currencies')}`);
          $(".language-text").text(`${localStorage.getItem('languages')}`);
-
+         
          $(".borders-text").text(`${localStorage.getItem('borderCountries')}`);
     });
   });
   
-
-
-  // Filter of regions //
+  // Filter of regions 
   $(".drop-data").click(function () {
     $(".dropdown ul").toggleClass("active");
   });
@@ -193,21 +194,18 @@ $(document).ready(function () {
   }
 
   // Back button
-
   $(".back-button").click(() => {
     window.location = "index.html";
   })
 
 
   // Home page direct link
-
   $(".separator-header h3").click(() => {
     window.location = "index.html";
   })
 
 
   // Adding the filter to the input
-
 $(".input-box").keyup(() => {
   var input = $("#input-name-country");
   var inputData = input[0];

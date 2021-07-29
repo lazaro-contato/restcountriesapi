@@ -330,9 +330,19 @@ ul {
   margin-top: 35px;
 }
 
-.borders-text {
-  color: red;
+
+
+.box-border-countries{
+  width: 300px;
+  padding: 3px 20px;
+  margin: 20px;
+
+  border: 1px solid transparent;
+  border-radius: 5px;
+
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 4px;
 }
+
 
 @media (min-width: 700px) {
   .first-country-flag {
