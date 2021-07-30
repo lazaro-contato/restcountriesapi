@@ -1,12 +1,9 @@
-
-/* Adding a continents filter function */
-
 $(document).ready(function () {
 
   // variable of actives countries //
   let activesCountries = [];
 
-
+  
   // Searching the data //
 
   fetch("https://restcountries.eu/rest/v2/all").then((response) => {
@@ -41,7 +38,7 @@ $(document).ready(function () {
          .then(dataCountry => {
 
           // Defining the variables //
-           let currentCountry = dataCountry[0]
+           let currentCountry = dataCountry[0];
            let singleCountryFlag = currentCountry.flag;
            let singleCountryName = currentCountry.name;
            let singleCountryNativeName = currentCountry.nativeName;
@@ -53,39 +50,38 @@ $(document).ready(function () {
                       
 
            // Adding the border countries in a array //
-           let arrayBorderCountries = []
+           let arrayBorderCountries = [];
            currentCountry.borders.forEach((borders) => {
              arrayBorderCountries.push(borders);
            })
 
            // Searching the border countries on API and returning in country page
 
-           let urlSearch = "https://restcountries.eu/rest/v2/alpha?codes="
-           let newUrl = ""
+           let urlSearch = "https://restcountries.eu/rest/v2/alpha?codes=";
+           let newUrl = "";
 
            arrayBorderCountries.forEach((borderCountry) => {
             
-            urlSearch += ";" + borderCountry.toLowerCase()
-            newUrl = urlSearch.replace(";","")
+            urlSearch += ";" + borderCountry.toLowerCase();
+            newUrl = urlSearch.replace(";","");
            });
 
-           let finalArrayBorderCountries = []
+           let finalArrayBorderCountries = [];
 
            if (arrayBorderCountries.length == 0){
             localStorage.setItem('borderCountries', `${""}`);
-            localStorageAdd()
+            localStorageAdd();
 
 
            }else {
             fetch(newUrl).then((response) => {
               response.json()
               .then((countries) => {
-                console.log(countries)
                 countries.forEach((item) => {
-                 finalArrayBorderCountries.push(item.name)
+                 finalArrayBorderCountries.push(item.name);
                });
                localStorage.setItem('borderCountries', JSON.stringify(finalArrayBorderCountries));
-               }).then(localStorageAdd())
+               }).then(localStorageAdd());
             })
           }
 
@@ -104,7 +100,7 @@ $(document).ready(function () {
             localStorage.setItem('topLevelDomain', `${singleCountryTopLevelDomain}`);
 
             // Adding the languages of a country in a string //
-           let arrayLanguages = []
+           let arrayLanguages = [];
            currentCountry.languages.forEach((languages) => {
             let countryLanguage = languages.name;
             arrayLanguages.push(countryLanguage);
@@ -113,16 +109,13 @@ $(document).ready(function () {
            });
 
             // Adding the currencies of a country in a string //
-             let arrayCurrencies = []
+             let arrayCurrencies = [];
              currentCountry.currencies.forEach((currencies) => {
              let countryCurrency = currencies.name;
              arrayCurrencies.push(countryCurrency);
              let stringCurrencies = arrayCurrencies.toString().replaceAll(",", ", ");
              localStorage.setItem('currencies', `${stringCurrencies}`);
             });
-
-            
-
             window.location = "country.html";
           }
          });
@@ -141,20 +134,18 @@ $(document).ready(function () {
          $(".currencies-text").text(`${localStorage.getItem('currencies')}`);
          $(".language-text").text(`${localStorage.getItem('languages')}`);
 
-         //$(".borders-text").text(`${localStorage.getItem('borderCountries')}`);
+
+         // Adding an array of countries to local storage and defining them in the document
 
            if (localStorage.getItem('borderCountries') == "") {
-
           }else{
             const arrayCountriesBorderToSet = JSON.parse(localStorage.getItem('borderCountries'));
-
             arrayCountriesBorderToSet.forEach(country => {
-            let countryName = country.toString()
+            let countryName = country.toString();
             const countryElement = `<div class="box-border-countries">${countryName}</div>`;
             $("#ip-country").append(countryElement);
             });
           };
-
 
     });
   });
@@ -171,7 +162,7 @@ $(document).ready(function () {
         $(".default-option").text(text);
         $(".dropdown ul").removeClass("active");
         
-        RegionFilter(text)
+        RegionFilter(text);
 
         if (text == "All"){
           let countryCards = $(".card-country");
@@ -243,4 +234,14 @@ $(".input-box").keyup(() => {
     }
   }
 });
-})
+
+
+  //Addiong the search to elements on country page
+$(".box-border-countries").click(() => {
+
+  console.log("sim")
+
+});
+
+
+});
