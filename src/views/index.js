@@ -147,7 +147,28 @@ $(document).ready(function () {
             });
           };
 
-    });
+          //Adding the search to elements on country page
+          $(".box-border-countries").click(function () {
+            const countryCliked = this.innerHTML.replaceAll(" ", "%20")
+            fetch(`https://restcountries.eu/rest/v2/name/${countryCliked}`).then((response) => {
+              response.json()
+              .then((response) => {
+
+           let clickedCountry = response[0];
+           let clickedCountryFlag = clickedCountry.flag;
+           let clickedCountryName = clickedCountry.name;
+           let clickedCountryNativeName = clickedCountry.nativeName;
+           let clickedCountryPopulation = clickedCountry.population.toLocaleString();
+           let clickedCountryRegion = clickedCountry.region;
+           let clickedCountrySubRegion = clickedCountry.subregion;
+           let clickedCountryCapital = clickedCountry.capital;
+           let clickedCountryTopLevelDomain = clickedCountry.topLevelDomain;
+
+            //falta adicionar os valores do país clicado aos elementos da pagina ativa
+              });
+            });
+
+          });
   });
   
   // Filter of regions 
@@ -236,10 +257,7 @@ $(".input-box").keyup(() => {
 });
 
 
-  //Addiong the search to elements on country page
-$(".box-border-countries").click(() => {
-
-  console.log("sim")
+  
 
 });
 
