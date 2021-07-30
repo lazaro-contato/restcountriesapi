@@ -143,24 +143,17 @@ $(document).ready(function () {
 
          //$(".borders-text").text(`${localStorage.getItem('borderCountries')}`);
 
-          if (localStorage.getItem('borderCountries') == "") {
+           if (localStorage.getItem('borderCountries') == "") {
 
           }else{
             const arrayCountriesBorderToSet = JSON.parse(localStorage.getItem('borderCountries'));
 
             arrayCountriesBorderToSet.forEach(country => {
             let countryName = country.toString()
-            const countryElement = `<span class="box-border-countries">${countryName}</span>`;
+            const countryElement = `<div class="box-border-countries">${countryName}</div>`;
             $("#ip-country").append(countryElement);
-
             });
-            
-            console.log(arrayCountriesBorderToSet)
-          }
-         
-
-
-          //$("#ip-country").append(countryElement);
+          };
 
 
     });
