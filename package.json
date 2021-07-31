@@ -15,7 +15,5 @@
     "url": "https://github.com/lazaro-contato/restcountriesapi/issues"
   },
   "homepage": "https://github.com/lazaro-contato/restcountriesapi#readme",
-  "dependencies": {
-    "axios": "^0.21.1"
-  }
+  "dependencies": {}
 }

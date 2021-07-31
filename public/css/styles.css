@@ -54,6 +54,16 @@ ul {
   width: 21px;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}        
+
+a:visited {
+  color:black;
+} 
+
+
 /* INPUT CONFIG */
 
 .table-content {
