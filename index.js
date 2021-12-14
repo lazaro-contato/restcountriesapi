@@ -127,7 +127,7 @@ $(document).ready(function () {
                   .replaceAll(",", ", ");
                 localStorage.setItem("currencies", `${stringCurrencies}`);
               });
-              window.location = "src/country.html";
+              window.location = "country.html";
             }
           });
         });
