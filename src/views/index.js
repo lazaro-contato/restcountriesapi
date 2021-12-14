@@ -4,7 +4,7 @@ $(document).ready(function () {
 
   // Searching the data //
 
-  fetch("https://restcountries.eu/rest/v2/all").then((response) => {
+  fetch("https://restcountries.com/v2/all").then((response) => {
     response.json().then((data) => {
       data.forEach((country) => {
         let countryName = country.name;
@@ -35,10 +35,10 @@ $(document).ready(function () {
           .toLowerCase()
           .replaceAll(" ", "%20");
 
-          console.log(`https://restcountries.eu/rest/v2/name/${countryNameClicked}`)
+          console.log(`https://restcountries.com/v2/name/${countryNameClicked}`)
 
         fetch(
-          `https://restcountries.eu/rest/v2/name/${countryNameClicked}`
+          `https://restcountries.com/v2/name/${countryNameClicked}`
         ).then((response) => {
           response.json().then((dataCountry) => {
             // Defining the variables //
@@ -61,7 +61,7 @@ $(document).ready(function () {
 
             // Searching the border countries on API and returning in country page
 
-            let urlSearch = "https://restcountries.eu/rest/v2/alpha?codes=";
+            let urlSearch = "https://restcountries.com/v2/alpha?codes=";
             let newUrl = "";
 
             arrayBorderCountries.forEach((borderCountry) => {
@@ -164,7 +164,7 @@ $(document).ready(function () {
       //Adding the search to elements on country page
       $(".box-border-countries").click(function () {
         const countryCliked = this.innerHTML.replaceAll(" ", "%20");
-        fetch(`https://restcountries.eu/rest/v2/name/${countryCliked}`).then(
+        fetch(`https://restcountries.com/v2/name/${countryCliked}`).then(
           (response) => {
             response.json().then((response) => {
               let clickedCountry = response[0];
@@ -220,7 +220,7 @@ $(document).ready(function () {
 
               // Searching the border countries on API and returning in country page
 
-              let urlSearch = "https://restcountries.eu/rest/v2/alpha?codes=";
+              let urlSearch = "https://restcountries.com/v2/alpha?codes=";
               let newUrl = "";
 
               arrayBorderCountries.forEach((borderCountry) => {
