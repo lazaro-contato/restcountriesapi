@@ -1,7 +1,9 @@
 # Rest Countries API consumer
-TMB calculator measures your basal metabolic rate, showing the amount of calories your body consumes performing tasks during the day. Essentially done with ReactJS.<br>
+See it working [here](rest-countries-consumer.netlify.app)<br>
 
-<img src="https://github.com/lazaro-contato/images-repo/blob/master/TMB.PNG" alt="JLazaro" border="0">
+Rest Countries API consumer displays the list of all countries in the world and allows the user to filter by region and consult specific information for each country.<br>
+
+<img src="https://github.com/lazaro-contato/images-repo/blob/master/restcountries.PNG" alt="JLazaro" border="0">
 <br>
 
 ## 📱 Contact
@@ -15,28 +17,41 @@ For this and another projects, see my [Github.](https://github.com/lazaro-contat
 If you want to view the files for this project, you can make a clone:
 
 ```sh
-git clone https://github.com/lazaro-contato/calories.git
+https://github.com/lazaro-contato/restcountriesapi.git
 ```
 
 ## 💻 Features
 
-The TBM calculator calculates the daily consumption of calories in 3 different situations, at rest, practicing moderate physical activities and practicing intense physical activities.
+You can filter countries by region.
 <br>
 <br>
-<img src="https://github.com/lazaro-contato/images-repo/blob/master/TMB%20itens.png" alt="JLazaro" border="0">
+<img src="https://github.com/lazaro-contato/images-repo/blob/master/rest-filter.png" alt="JLazaro" border="0">
+
+You can filter countries by name.
+<br>
+<br>
+<img src="https://github.com/lazaro-contato/images-repo/blob/master/rest-filter-input.PNG" alt="JLazaro" border="0">
+
+You can see detailed information for a country.
+<br>
+<br>
+<img src="https://github.com/lazaro-contato/images-repo/blob/master/filter-country.PNG" alt="JLazaro" border="0">
 
 ## 	✒️ Prototype Model
-Before the development of the tool, a prototype was developed to better visualize the organization of the layout and layout of the elements. You can view the model created through the link:
+
+The project was based on the challenge of the frontend mentor platform. You can view the challenge here
+
 ```sh
-https://www.figma.com/file/Oax133nUde3F3LQnfHFSuH/CalorieS?node-id=0%3A1
+https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca
 ```
-<img src="https://github.com/lazaro-contato/images-repo/blob/master/TMB%20prototype.PNG" alt="JLazaro" border="0">
 
 
 ## ➕ Some projects
 
 * [ **A pixel to rem calculator**](https://pixeltorem.netlify.app/).<br>
 *[Repository](https://github.com/lazaro-contato/pixeltorem)*
+* [ **TMB Calculator**](https://calories-react.netlify.app/).<br>
+*[Repository](https://github.com/lazaro-contato/calories)*
 
 
 ## 📃 Portifolio
