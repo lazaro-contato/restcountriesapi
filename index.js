@@ -127,7 +127,7 @@ $(document).ready(function () {
                   .replaceAll(",", ", ");
                 localStorage.setItem("currencies", `${stringCurrencies}`);
               });
-              window.location = "src/country.html";
+              window.location = "country.html";
             }
           });
         });
@@ -171,8 +171,7 @@ $(document).ready(function () {
               let clickedCountryFlag = clickedCountry.flag;
               let clickedCountryName = clickedCountry.name;
               let clickedCountryNativeName = clickedCountry.nativeName;
-              let clickedCountryPopulation =
-                clickedCountry.population.toLocaleString();
+              let clickedCountryPopulation = clickedCountry.population.toLocaleString();
               let clickedCountryRegion = clickedCountry.region;
               let clickedCountrySubRegion = clickedCountry.subregion;
               let clickedCountryCapital = clickedCountry.capital;
