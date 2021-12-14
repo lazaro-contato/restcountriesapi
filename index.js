@@ -242,7 +242,7 @@ $(document).ready(function () {
                       "borderCountries",
                       JSON.stringify(finalArrayBorderCountries)
                     );
-                    window.location = "src/country.html";
+                    window.location = "country.html";
                   });
                 });
               }
