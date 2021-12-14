@@ -298,12 +298,12 @@ $(document).ready(function () {
 
     // Back button
     $(".back-button").click(() => {
-      window.location = "/index.html";
+      window.location = "index.html";
     });
 
     // Home page direct link
     $(".separator-header h3").click(() => {
-      window.location = "/index.html";
+      window.location = "index.html";
     });
 
     // Adding the filter to the input
